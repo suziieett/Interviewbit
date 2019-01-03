@@ -1,2 +1,2 @@
 # Interviewbit
- Code everything needed to get your dream job.
+ Code everything to get your dream job.
