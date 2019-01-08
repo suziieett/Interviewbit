@@ -1,0 +1,59 @@
+public class Solution {
+    public ArrayList<Integer> plusOne(ArrayList<Integer> A) {
+    
+       int nextIndex=0;
+       boolean notEnd = true;
+       
+       //remove intial zeros from number
+       for(int i=0; i<A.size(); i++){
+           if(A.get(i) != 0){
+               break;
+           } 
+           else{
+            A.remove(i);
+            i--;
+ 
+            if(A.size() ==0){
+                A.add(1);
+                return A; 
+           }  
+         }
+       }
+      
+       int lastDigitIndex = A.size() -1;
+       
+       //Case1:- If adding to last digit doesn't changes the size of arraylist 
+       if( A.get(lastDigitIndex) != 9){
+           A.set(lastDigitIndex, A.get(lastDigitIndex) + 1);
+       }
+       
+        //Case2:- If adding to last digit changes the size of arraylist (i.e. if 9 [size =1] then changes to 10 [size = 2] 
+       else{
+           //Reverse the number so that add operation becomes easy at the end, other wise we have to shift every elements of arraylist
+           //by one least to increase complexity and time consuming 
+           Collections.reverse(A);
+           for(int i=0; i<A.size(); i++)
+           {
+                if( A.get(i) == 9){
+                        A.set(i, 0);
+                        nextIndex++;
+                    
+                        if(i == A.size()-1){
+                            A.add(1);
+                            notEnd = false;
+                        }
+                }
+                else{
+                    break;
+                }       
+           }
+           if(notEnd){
+               A.set(nextIndex,A.get(nextIndex) +1 );
+           }
+           
+           //Revert back the ayyaylist again 
+           Collections.reverse(A);
+       }
+    return A;   
+    }
+}
