@@ -2,11 +2,14 @@ public class Solution {
     public int coverPoints(ArrayList<Integer> A, ArrayList<Integer> B) {
        
        int currMin =0;
+       //If array have size one or both array are unequal in size os return 0
        if( A.size() ==1 || B.size()==1 || A.size() != B.size() ){
             return 0;
         } 
         
+        
         for(int i=1; i<A.size(); i++){
+            //Get maximum of distances of x-cordinate and y- cordinates to the next stage
             currMin += Math.max (Math.abs(A.get(i)-A.get(i-1)), Math.abs(B.get(i)-B.get(i-1)));
         }
         
