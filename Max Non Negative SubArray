@@ -1,0 +1,50 @@
+public class Solution {
+    public ArrayList<Integer> maxset(ArrayList<Integer> A) {
+        
+       long curSum=0, maxSum =Integer.MIN_VALUE;
+       int startMax = -1, endMax = -1;
+       int start=0,end=0;
+      
+        for(int i=0; i<A.size(); i++){
+            
+            if(A.get(i) >=0){
+                
+                curSum += A.get(i);
+                
+                if(curSum > maxSum) {  
+                    maxSum = curSum;  
+                    startMax = start;  
+                    endMax = end + 1;  
+                } 
+                
+                //Checking if value of string is same then the length of max string is needed.  
+                else if(curSum == maxSum) {  
+                    if(end + 1 - start > endMax - startMax) {  
+                     startMax = start;  
+                     endMax = end + 1;  
+                    }
+                } }
+                else {  
+                     start = end + 1;  
+                     curSum = 0;  
+                }  
+           
+            end++;  
+   
+        }   
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        
+        if(startMax == -1 || endMax == -1){
+            return result;
+        } 
+            
+        
+        for(int i=startMax; i<endMax; i++){
+            result.add(A.get(i));
+        }
+     
+        
+        return result;
+       
+    }
+}
